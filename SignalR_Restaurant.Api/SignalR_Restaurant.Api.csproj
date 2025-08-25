@@ -18,4 +18,8 @@
     <ProjectReference Include="..\SignalR_Restaurant.BusinessLayer\SignalR_Restaurant.BusinessLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
