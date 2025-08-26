@@ -7,7 +7,7 @@ using SignalR_Restaurant.EntityLayer.Entities;
 
 namespace SignalR_Restaurant.DataAccessLayer.Abstract
 {
-    public interface IFeatureDal:IGenericDal<Feature>
+    public interface IFeatureDal : IGenericDal<Feature>
     {
     }
 }

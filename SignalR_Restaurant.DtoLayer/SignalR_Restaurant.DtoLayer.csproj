@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SignalR_Restaurant.EntityLayer\SignalR_Restaurant.EntityLayer.csproj" />
+  </ItemGroup>
+
 </Project>

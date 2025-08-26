@@ -7,7 +7,7 @@ using SignalR_Restaurant.EntityLayer.Entities;
 
 namespace SignalR_Restaurant.DataAccessLayer.Abstract
 {
-    internal interface IDiscountDal:IGenericDal<Discount>
+    public interface IDiscountDal : IGenericDal<Discount>
     {
     }
 }

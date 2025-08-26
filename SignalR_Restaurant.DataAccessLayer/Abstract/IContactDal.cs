@@ -7,7 +7,7 @@ using SignalR_Restaurant.EntityLayer.Entities;
 
 namespace SignalR_Restaurant.DataAccessLayer.Abstract
 {
-    public interface IContactDal:IGenericDal<Contact>
+    public interface IContactDal : IGenericDal<Contact>
     {
     }
 }
