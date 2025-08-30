@@ -1,6 +1,15 @@
+using SignalR_Restaurant.BusinessLayer.Abstract;
+using SignalR_Restaurant.BusinessLayer.Concrete;
+using SignalR_Restaurant.DataAccessLayer.Abstract;
+using SignalR_Restaurant.DataAccessLayer.Concrete;
+using SignalR_Restaurant.DataAccessLayer.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<RestaurantContext>();
+builder.Services.AddScoped<IAboutService, AboutManager>();
+builder.Services.AddScoped<IAboutDal, EfAboutDal>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

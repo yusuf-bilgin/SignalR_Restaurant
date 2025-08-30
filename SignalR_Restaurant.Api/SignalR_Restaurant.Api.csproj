@@ -21,8 +21,4 @@
     <ProjectReference Include="..\SignalR_Restaurant.DtoLayer\SignalR_Restaurant.DtoLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
