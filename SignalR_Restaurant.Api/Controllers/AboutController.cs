@@ -25,7 +25,7 @@ namespace SignalR_Restaurant.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAbout(CreateDto createAboutDto)
+        public IActionResult CreateAbout(CreateAboutDto createAboutDto)
         {
             About about = new About
             {
@@ -46,7 +46,7 @@ namespace SignalR_Restaurant.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateAbout(UpdateDto updateAboutDto)
+        public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
         {
             About about = new About
             {

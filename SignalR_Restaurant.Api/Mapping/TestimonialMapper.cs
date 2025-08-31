@@ -8,10 +8,10 @@ namespace SignalR_Restaurant.Api.Mapping
     {
         public TestimonialMapper()
         {
-            CreateMap<Testimonial, ResultDto>().ReverseMap();
-            CreateMap<Testimonial, CreateDto>().ReverseMap();
-            CreateMap<Testimonial, GetDto>().ReverseMap();
-            CreateMap<Testimonial, UpdateDto>().ReverseMap();
+            CreateMap<Testimonial, ResultTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, GetTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
         }
     }
 }

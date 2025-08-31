@@ -8,10 +8,10 @@ namespace SignalR_Restaurant.Api.Mapping
     {
         public CategoryMapping()
         {
-            CreateMap<Category, ResultDto>().ReverseMap();
-            CreateMap<Category, CreateDto>().ReverseMap();
-            CreateMap<Category, GetDto>().ReverseMap();
-            CreateMap<Category, UpdateDto>().ReverseMap();
+            CreateMap<Category, ResultCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, GetCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
         }
     }
 }

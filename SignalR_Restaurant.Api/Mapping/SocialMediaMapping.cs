@@ -8,10 +8,10 @@ namespace SignalR_Restaurant.Api.Mapping
     {
         public SocialMediaMapping()
         {
-            CreateMap<SocialMedia, ResultDto>().ReverseMap();
-            CreateMap<SocialMedia, CreateDto>().ReverseMap();
-            CreateMap<SocialMedia, GetDto>().ReverseMap();
-            CreateMap<SocialMedia, UpdateDto>().ReverseMap();
+            CreateMap<SocialMedia, ResultSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, CreateSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, UpdateSocialMediaDto>().ReverseMap();
         }
     }
 }
