@@ -1,3 +1,5 @@
+using System.Reflection;
+using SignalR_Restaurant.Api.Mapping;
 using SignalR_Restaurant.BusinessLayer.Abstract;
 using SignalR_Restaurant.BusinessLayer.Concrete;
 using SignalR_Restaurant.DataAccessLayer.Abstract;
@@ -12,6 +14,12 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+
+builder.Services.AddScoped<IBookingService, BookingManager>();
+builder.Services.AddScoped<IBookingDal, EfBookingDal>();
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
