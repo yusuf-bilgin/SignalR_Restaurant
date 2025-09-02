@@ -36,6 +36,14 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetProductWithCategory")]
+        public IActionResult GetProductWithCategory()
+        {
+            var values = _productService.TGetProductsWithCategory();
+            var result = _mapper.Map<List<GetProductWithCategory>>(values);
+            return Ok(result);
+        }
+
         [HttpPost]
         public IActionResult CreateProduct(CreateProductDto createProductDto)
         {

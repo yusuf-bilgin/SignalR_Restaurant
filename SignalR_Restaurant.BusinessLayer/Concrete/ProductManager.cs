@@ -28,6 +28,11 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             return _productDal.GetById(id);
         }
 
+        public List<Product> TGetProductsWithCategory()
+        {
+            return _productDal.GetProductsWithCategory();
+        }
+
         public void TInsert(Product entity)
         {
             _productDal.Insert(entity);

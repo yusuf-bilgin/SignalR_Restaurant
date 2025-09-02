@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SignalR_Restaurant.DataAccessLayer.Abstract;
 using SignalR_Restaurant.DataAccessLayer.Concrete;
 using SignalR_Restaurant.DataAccessLayer.Repositories;
@@ -14,6 +15,13 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
     {
         public EfProductDal(RestaurantContext context) : base(context)
         {
+        }
+
+        public List<Product> GetProductsWithCategory()
+        {
+            var context = new RestaurantContext();
+            var values = context.Products.Include(x => x.Category).ToList();
+            return values;
         }
     }
 }
