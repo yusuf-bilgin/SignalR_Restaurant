@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SignalR_Restaurant.EntityLayer.Enums;
 
 namespace SignalR_Restaurant.DtoLayer.Testimonial
 {
@@ -13,6 +12,6 @@ namespace SignalR_Restaurant.DtoLayer.Testimonial
         public string? Title { get; set; }
         public string? Comment { get; set; }
         public string? ImageUrl { get; set; }
-        public StatusType Status { get; set; }
+        public bool Status { get; set; }
     }
 }

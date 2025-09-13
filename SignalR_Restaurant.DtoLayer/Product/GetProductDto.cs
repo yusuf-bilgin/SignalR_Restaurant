@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SignalR_Restaurant.EntityLayer.Enums;
 
 namespace SignalR_Restaurant.DtoLayer.Product
 {
@@ -14,6 +13,6 @@ namespace SignalR_Restaurant.DtoLayer.Product
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public string? ImageUrl { get; set; }
-        public StatusType Status { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -24,13 +24,5 @@ namespace SignalR_Restaurant.DataAccessLayer.Concrete
         public DbSet<Product> Products { get; set; }
         public DbSet<SocialMedia> SocialMedias{ get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Enum to string conversion for Category.Status
-            modelBuilder.Entity<Category>()
-                .Property(c => c.Status)
-                .HasConversion<string>();
-        }
     }
 }
