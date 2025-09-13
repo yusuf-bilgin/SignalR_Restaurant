@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SignalR_Restaurant.BusinessLayer.Abstract;
 using SignalR_Restaurant.DtoLayer.Category;
 using SignalR_Restaurant.EntityLayer.Entities;
-using SignalR_Restaurant.EntityLayer.Enums;
 
 namespace SignalR_Restaurant.Api.Controllers
 {
@@ -39,7 +38,7 @@ namespace SignalR_Restaurant.Api.Controllers
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
             var category = _mapper.Map<Category>(createCategoryDto);
-            category.Status = StatusType.Active; // mapperdan hariç bir şekilde sabit değer de eklenebilir -> Şu an tüm eklenen kategoriler aktif olarak eklenecek!
+            category.Status = true; // mapperdan hariç bir şekilde sabit değer de eklenebilir -> Şu an tüm eklenen kategoriler aktif olarak eklenecek!
             _categoryService.TInsert(category);
             return Ok("Kategori Eklendi");
         }

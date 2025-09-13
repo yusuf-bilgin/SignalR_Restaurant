@@ -30,15 +30,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach (var item in Model)
-								{
-									<tr>
-										<td>@item.CategoryId</td>
-										<td>@item.Name</td>
-										<td>@item.Status</td>
-										<td><a href="#" class="btn btn-outline-danger"></a>Sil</td>
-										<td><a href="#" class="btn btn-outline-warning"></a>Güncelle</td>
-									</tr>
+								@{
+									int i = 1;
+									@foreach (var item in Model)
+									{
+										<tr>
+											<td hidden>@item.CategoryId</td>
+											<td>@i</td>
+											<td>@item.Name</td>
+											<td>@item.Status</td>
+											<td><a href="#" class="btn btn-outline-danger">Sil</a></td>
+											<td><a href="#" class="btn btn-outline-warning">Güncelle</a></td>
+										</tr>
+										i++;
+									}
 								}
 							</tbody>
 						</table>

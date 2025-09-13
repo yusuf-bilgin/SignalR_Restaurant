@@ -1,6 +1,4 @@
-﻿using SignalR_Restaurant.EntityLayer.Enums;
-
-namespace SignalR_Restaurant.WebUI.Dtos.CategoryDtos
+﻿namespace SignalR_Restaurant.WebUI.Dtos.CategoryDtos
 {
     public class ResultCategoryDto
     {

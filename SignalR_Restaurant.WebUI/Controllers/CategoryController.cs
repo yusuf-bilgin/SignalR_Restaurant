@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SignalR_Restaurant.WebUI.Dtos.CategoryDtos;
@@ -17,7 +18,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7292/api/Category");
+            var responseMessage = await client.GetAsync("https://localhost:44369/api/Category"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -25,7 +26,10 @@ namespace SignalR_Restaurant.WebUI.Controllers
                 var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
                 return View(values);
             }
-            return View();
+            else
+            {
+                return View(responseMessage);
+            }
         }
     }
 }
