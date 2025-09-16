@@ -51,5 +51,16 @@ namespace SignalR_Restaurant.WebUI.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:44369/api/Category/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
