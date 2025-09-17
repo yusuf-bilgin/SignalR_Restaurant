@@ -27,7 +27,7 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(values);
         }
 
-        [HttpGet("GetCategory")]
+        [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
             var value = _mapper.Map<ResultCategoryDto>(_categoryService.TGetById(id));
