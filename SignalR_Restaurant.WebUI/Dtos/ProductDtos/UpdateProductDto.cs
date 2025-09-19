@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SignalR_Restaurant.DtoLayer.Product
+﻿namespace SignalR_Restaurant.WebUI.Dtos.ProductDtos
 {
     public class UpdateProductDto
     {

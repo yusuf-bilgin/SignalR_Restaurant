@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SignalR_Restaurant.DtoLayer.Product
+﻿namespace SignalR_Restaurant.WebUI.Dtos.ProductDtos
 {
-    public class UpdateProductDto
+    public class ResultProductDto
     {
         public int ProductId { get; set; }
         public required string Name { get; set; }
@@ -15,6 +9,6 @@ namespace SignalR_Restaurant.DtoLayer.Product
         public string? ImageUrl { get; set; }
         public bool Status { get; set; }
 
-        public int CategoryId { get; set; }
+        public string CategoryName { get; set; } 
     }
 }
