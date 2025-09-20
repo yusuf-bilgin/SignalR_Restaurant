@@ -1,0 +1,105 @@
+﻿@model CreateProductDto //UI katmanında tanımlandı.
+@{
+	ViewData["Title"] = "CreateProduct";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Yeni Ürün Girişi</h4>
+		<form method="post">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<!-- Sol sütun -->
+						<div class="col-md-6">
+							<div class="card-body">
+								<div class="form-group">
+									<label for="productname">Ürün Adı</label>
+									<input type="text" class="form-control" asp-for="Name" placeholder="Örn: Mantı, Osmanlı şerbeti" id="productname">
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="form-group">
+									<label for="price">Ürün Fiyatı</label>
+									<input type="number" class="form-control" asp-for="Price" id="price" placeholder="₺" step="0.01" min="0">
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="form-group">
+									<label for="categoryid">Ürün kategorisi</label>
+									@Html.DropDownListFor(model => model.CategoryId,
+									(List<SelectListItem>)ViewBag.Categories, "Kategori seçiniz...", new { @class = "form-control" })
+								</div>
+							</div>
+						</div>
+
+						<!-- Sağ sütun -->
+						<div class="col-md-6">
+							<div class="card-body">
+								<div class="form-group">
+									<label for="description">Ürün Açıklaması</label>
+									<textarea class="form-control" asp-for="Description" placeholder="Örn: Taze otlarla marine edilmiş, ızgarada mükemmel pişirilmiş tavuk bonfile." id="description" rows="4"></textarea>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="form-group">
+									<label for="imageurl">Ürün Görsel Linki</label>
+									<input type="text" class="form-control" asp-for="ImageUrl" id="imageurl" placeholder="Buraya ürünün görsel linkini verebilirsiniz">
+									<div id="dropzone" class="border rounded p-3 text-center mt-2" style="cursor: pointer;">
+										Ya da sürükleyip bırakın veya tıklayın
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Alt Ekle butonu -->
+				<div class="card-footer mt-3 d-flex justify-content-center">
+					<button class="btn btn-primary btn-lg">Ekle</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	const dropzone = document.getElementById('dropzone');
+	const imageInput = document.getElementById('imageurl');
+
+	// Drag olaylarını engelle (tarayıcının default davranışını bozmak için)
+	['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+		dropzone.addEventListener(eventName, e => e.preventDefault());
+	});
+
+	// Dosya bırakıldığında
+	dropzone.addEventListener('drop', e => {
+		const file = e.dataTransfer.files[0];
+		if (file && file.type.startsWith('image/')) {
+			// URL.createObjectURL ile geçici link oluştur
+			const url = URL.createObjectURL(file);
+			imageInput.value = url;
+			dropzone.innerHTML = `<img src="${url}" class="img-fluid rounded" style="max-height:150px;">`;
+		} else {
+			alert("Lütfen sadece resim dosyası bırakın.");
+		}
+	});
+
+	// Tıklayınca dosya seç
+	dropzone.addEventListener('click', () => {
+		const fileInput = document.createElement('input');
+		fileInput.type = 'file';
+		fileInput.accept = 'image/*';
+		fileInput.click();
+		fileInput.onchange = e => {
+			const file = e.target.files[0];
+			if (file) {
+				const url = URL.createObjectURL(file);
+				imageInput.value = url;
+				dropzone.innerHTML = `<img src="${url}" class="img-fluid rounded" style="max-height:150px;">`;
+			}
+		};
+	});
+</script>

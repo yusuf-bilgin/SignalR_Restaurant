@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using SignalR_Restaurant.WebUI.Dtos.CategoryDtos;
 using SignalR_Restaurant.WebUI.Dtos.ProductDtos;
 
 namespace SignalR_Restaurant.WebUI.Controllers
@@ -27,8 +30,20 @@ namespace SignalR_Restaurant.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateProduct()
+        public async Task<IActionResult> CreateProduct()
         {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:44369/api/Category");
+            var jsonaData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonaData);
+
+            List<SelectListItem> categories = (from x in values
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.Name,
+                                                   Value = x.CategoryId.ToString()
+                                               }).ToList();
+            ViewBag.Categories = categories;
             return View();
         }
         [HttpPost]
@@ -37,7 +52,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
             createProductDto.Status = true;
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductDto);
-            StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:44369/api/Product", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
