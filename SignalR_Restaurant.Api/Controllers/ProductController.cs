@@ -28,14 +28,6 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(values);
         }
 
-        [HttpGet("GetProduct")]
-        public IActionResult GetProduct(int id)
-        {
-            var values = _productService.TGetById(id);
-            var result = _mapper.Map<ResultProductDto>(values);
-            return Ok(result);
-        }
-
         [HttpGet("GetProductWithCategory")]
         public IActionResult GetProductWithCategory()
         {
@@ -60,6 +52,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Ürün Silindi");
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var product = _productService.TGetById(id);
+            var value = _mapper.Map<GetProductDto>(product);
+            return Ok(value);
+        }
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
         {
