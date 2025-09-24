@@ -39,8 +39,8 @@
 											<td>@i</td>
 											<td>@item.Name</td>
 											<td>@item.Status</td>
-											<td><a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-outline-danger">Sil</a></td>
-											<td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-outline-warning">Güncelle</a></td>
+											<td><a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a></td>
+											<td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-outline-warning btn-rounded">Güncelle</a></td>
 										</tr>
 										i++;
 									}
