@@ -28,14 +28,6 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetContact")]
-        public IActionResult GetContact(int id)
-        {
-            var values = _contactService.TGetById(id);
-            var result = _mapper.Map<ResultContactDto>(values);
-            return Ok(result);
-        }
-
         [HttpPost]
         public IActionResult CreateContact(CreateContactDto createContactDto)
         {
@@ -44,7 +36,7 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Kategori Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
             var value = _contactService.TGetById(id);
@@ -52,6 +44,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Kategori Silindi");
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetContact(int id)
+        {
+            var values = _contactService.TGetById(id);
+            var result = _mapper.Map<ResultContactDto>(values);
+            return Ok(result);
+        }
         [HttpPut]
         public IActionResult UpdateContact(UpdateContactDto updateContactDto)
         {
