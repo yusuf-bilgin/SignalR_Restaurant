@@ -17,13 +17,14 @@ namespace SignalR_Restaurant.Api.Controllers
             _aboutService = aboutService;
         }
 
+        // Tüm verileri listeleme
         [HttpGet]
         public IActionResult AboutList()
         {
             var values = _aboutService.TGetAll();
             return Ok(values);
         }
-
+        // Yeni veri ekleme
         [HttpPost]
         public IActionResult CreateAbout(CreateAboutDto createAboutDto)
         {
@@ -45,6 +46,14 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("About kısmı silindi.");
         }
 
+        // Update için önce id'ye göre veriyi getiriyoruz.
+        [HttpGet("{id}")]
+        public IActionResult GetAbout(int id)
+        {
+            var values = _aboutService.TGetById(id);
+            return Ok(values);
+        }
+        // Sonra Update için veriyi güncelliyoruz.
         [HttpPut]
         public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
         {
@@ -56,13 +65,6 @@ namespace SignalR_Restaurant.Api.Controllers
             };
             _aboutService.TUpdate(about);
             return Ok("About kısmı güncellendi.");
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetAbout(int id)
-        {
-            var values = _aboutService.TGetById(id);
-            return Ok(values);
         }
     }
 }

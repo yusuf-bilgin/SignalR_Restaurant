@@ -27,15 +27,6 @@ namespace SignalR_Restaurant.Api.Controllers
             var result = _mapper.Map<List<ResultDiscountDto>>(values);
             return Ok(result);
         }
-
-        [HttpGet("GetDiscount")]
-        public IActionResult GetDiscount(int id)
-        {
-            var values = _discountService.TGetById(id);
-            var result = _mapper.Map<ResultDiscountDto>(values);
-            return Ok(result);
-        }
-
         [HttpPost]
         public IActionResult CreateDiscount(CreateDiscountDto createDiscountDto)
         {
@@ -44,7 +35,7 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("İndirim Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteDiscount(int id)
         {
             var value = _discountService.TGetById(id);
@@ -52,6 +43,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("İndirim Silindi");
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetDiscount(int id)
+        {
+            var values = _discountService.TGetById(id);
+            var result = _mapper.Map<ResultDiscountDto>(values);
+            return Ok(result);
+        }
         [HttpPut]
         public IActionResult UpdateDiscount(UpdateDiscountDto updateDiscountDto)
         {

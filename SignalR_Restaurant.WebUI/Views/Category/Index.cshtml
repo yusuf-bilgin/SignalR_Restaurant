@@ -1,9 +1,10 @@
 ﻿@* Category Index View *@
 
-@model List<SignalR_Restaurant.WebUI.Dtos.CategoryDtos.ResultCategoryDto>
+@model List<ResultCategoryDto>
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int i = 0;
 }
 
 <div class="content">
@@ -28,20 +29,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								@{
-									int i = 1;
-									@foreach (var item in Model)
-									{
-										<tr>
-											<td hidden>@item.CategoryId</td>
-											<td>@i</td>
-											<td>@item.Name</td>
-											<td>@item.Status</td>
-											<td><a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a></td>
-											<td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-outline-warning btn-rounded">Güncelle</a></td>
-										</tr>
-										i++;
-									}
+								@foreach (var item in Model)
+								{
+									i++;
+									<tr>
+										<td hidden>@item.CategoryId</td>
+										<td>@i</td>
+										<td>@item.Name</td>
+										<td>@item.Status</td>
+										<td><a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a></td>
+										<td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-outline-warning btn-rounded">Güncelle</a></td>
+									</tr>
 								}
 							</tbody>
 						</table>
@@ -54,5 +52,3 @@
 		</div>
 	</div>
 </div>
-
-
