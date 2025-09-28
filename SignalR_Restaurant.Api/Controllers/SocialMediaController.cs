@@ -27,15 +27,6 @@ namespace SignalR_Restaurant.Api.Controllers
             var result = _mapper.Map<List<ResultSocialMediaDto>>(values);
             return Ok(result);
         }
-
-        [HttpGet("GetSocialMedia")]
-        public IActionResult GetSocialMedia(int id)
-        {
-            var values = _socialMediaService.TGetById(id);
-            var result = _mapper.Map<ResultSocialMediaDto>(values);
-            return Ok(result);
-        }
-
         [HttpPost]
         public IActionResult CreateSocialMedia(CreateSocialMediaDto createSocialMediaDto)
         {
@@ -44,7 +35,7 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Sosyal Medya Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteSocialMedia(int id)
         {
             var value = _socialMediaService.TGetById(id);
@@ -52,6 +43,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Sosyal Medya Silindi");
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetSocialMedia(int id)
+        {
+            var values = _socialMediaService.TGetById(id);
+            var result = _mapper.Map<ResultSocialMediaDto>(values);
+            return Ok(result);
+        }
         [HttpPut]
         public IActionResult UpdateSocialMedia(UpdateSocialMediaDto updateSocialMediaDto)
         {
