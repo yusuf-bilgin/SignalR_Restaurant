@@ -27,15 +27,6 @@ namespace SignalR_Restaurant.Api.Controllers
             var result = _mapper.Map<List<ResultFeatureDto>>(values);
             return Ok(values);
         }
-
-        [HttpGet("GetFeature")]
-        public IActionResult GetFeature(int id)
-        {
-            var values = _featureService.TGetById(id);
-            var result = _mapper.Map<ResultFeatureDto>(values);
-            return Ok(result);
-        }
-
         [HttpPost]
         public IActionResult CreateFeature(CreateFeatureDto createFeatureDto)
         {
@@ -44,7 +35,7 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Özellik Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteFeature(int id)
         {
             var value = _featureService.TGetById(id);
@@ -52,6 +43,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Özellik Silindi");
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetFeature(int id)
+        {
+            var values = _featureService.TGetById(id);
+            var result = _mapper.Map<ResultFeatureDto>(values);
+            return Ok(result);
+        }
         [HttpPut]
         public IActionResult UpdateFeature(UpdateFeatureDto updateFeatureDto)
         {
