@@ -27,15 +27,6 @@ namespace SignalR_Restaurant.Api.Controllers
             var result = _mapper.Map<List<ResultTestimonialDto>>(values);
             return Ok(result);
         }   
-
-        [HttpGet("GetTestimonial")]
-        public IActionResult GetTestimonial(int id)
-        {
-            var values = _testimonialService.TGetById(id);
-            var result = _mapper.Map<ResultTestimonialDto>(values);
-            return Ok(result);
-        }
-
         [HttpPost]
         public IActionResult CreateTestimonial(CreateTestimonialDto createTestimonialDto)
         {
@@ -44,7 +35,7 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Referans Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
             var value = _testimonialService.TGetById(id);
@@ -52,6 +43,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok("Referans Silindi");
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetTestimonial(int id)
+        {
+            var values = _testimonialService.TGetById(id);
+            var result = _mapper.Map<ResultTestimonialDto>(values);
+            return Ok(result);
+        }
         [HttpPut]
         public IActionResult UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
         {
