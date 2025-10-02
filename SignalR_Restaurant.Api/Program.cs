@@ -1,4 +1,5 @@
 using System.Reflection;
+using SignalR_Restaurant.Api.Hubs;
 using SignalR_Restaurant.Api.Mapping;
 using SignalR_Restaurant.BusinessLayer.Abstract;
 using SignalR_Restaurant.BusinessLayer.Concrete;
@@ -71,5 +72,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<SignalRHub>("/signalrhub"); // SignalR endpoint. Bununla localhost:port/signalrhub a istek atilir.
 
 app.Run();
