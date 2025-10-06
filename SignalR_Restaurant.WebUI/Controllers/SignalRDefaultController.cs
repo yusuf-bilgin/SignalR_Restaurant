@@ -8,5 +8,10 @@ namespace SignalR_Restaurant.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult Index2()
+        {
+            return View();
+        }
     }
 }
