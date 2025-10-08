@@ -1,7 +1,6 @@
-﻿
-@{
-    ViewData["Title"] = "Index2";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+﻿@{
+	ViewData["Title"] = "Index2";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
 <h1>Index</h1>
@@ -27,10 +26,11 @@
 							connection.start().then(() => {
 								$("#connstatus").text(connection.state);
 
-								// Her 5 saniyede bir kategori sayısını al - (interval metodu sayesinde)
+								// Her 5 saniyede bir kategori sayısını al(interval metodu sayesinde). Not: Bu yöntem trafiği yoruyor. "sunucudan otomatik push" yapmalı.
 								setInterval(() => {
 									connection.invoke("SendCategoryCount");
 								}, 5000);
+
 							}).catch((err) => { console.log(err) });
 
 							connection.on("ReceiveCategoryCount", (value) => {

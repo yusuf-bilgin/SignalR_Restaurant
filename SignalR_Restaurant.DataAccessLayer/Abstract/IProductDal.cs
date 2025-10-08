@@ -10,5 +10,7 @@ namespace SignalR_Restaurant.DataAccessLayer.Abstract
     public interface IProductDal : IGenericDal<Product>
     {
         List<Product> GetProductsWithCategory();
+        public int ProductCount();
     }
 }
+ 

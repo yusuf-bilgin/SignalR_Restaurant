@@ -33,6 +33,27 @@ namespace SignalR_Restaurant.Api.Controllers
             var value = _mapper.Map<ResultCategoryDto>(_categoryService.TGetById(id));
             return Ok(value);
         }
+         
+        [HttpGet("count")]
+        public IActionResult GetCategoryCount()
+        {
+            var value = _categoryService.TCategoryCount(); // zaten int döndüğü için mapleme yapmaya gerek yok
+            return Ok(value);
+        }
+
+        [HttpGet("count/active")]
+        public IActionResult GetActiveCategoryCount()
+        {
+            var value = _categoryService.TActiveCategoryCount();
+            return Ok(value);
+        }
+
+        [HttpGet("count/passive")]
+        public IActionResult GetPassiveCategoryCount()
+        {
+            var value = _categoryService.TPassiveCategoryCount();
+            return Ok(value);
+        }
 
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)

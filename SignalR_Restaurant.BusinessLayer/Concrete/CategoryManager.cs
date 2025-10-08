@@ -13,6 +13,16 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             _categoryDal = categoryDal;
         }
 
+        public int TActiveCategoryCount()
+        {
+            return _categoryDal.ActiveCategoryCount();
+        }
+
+        public int TCategoryCount()
+        {
+            return _categoryDal.CategoryCount();
+        }
+
         public void TDelete(Category entity)
         {
             _categoryDal.Delete(entity);
@@ -31,6 +41,11 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
         public void TInsert(Category entity)
         {
             _categoryDal.Insert(entity);
+        }
+
+        public int TPassiveCategoryCount()
+        {
+            return _categoryDal.PassiveCategoryCount();
         }
 
         public void TUpdate(Category entity)

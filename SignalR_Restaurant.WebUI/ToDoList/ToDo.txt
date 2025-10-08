@@ -1,0 +1,5 @@
+﻿Eklenecekler:
+-- CategoryCount
+-- ProductCount
+- Aktif kategori sayısı
+- Passif kategori sayısı

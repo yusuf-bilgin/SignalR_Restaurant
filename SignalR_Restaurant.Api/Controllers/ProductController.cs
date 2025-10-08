@@ -28,6 +28,13 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(values);
         }
 
+        [HttpGet("GetProductCount")]
+        public IActionResult GetProductCount()
+        {
+            var values = _productService.TProductCount();
+            return Ok(values);
+        }
+
         [HttpGet("GetProductWithCategory")]
         public IActionResult GetProductWithCategory()
         {

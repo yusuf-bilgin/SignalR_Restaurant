@@ -11,5 +11,6 @@ namespace SignalR_Restaurant.BusinessLayer.Abstract
     public interface IProductService : IGenericService<Product>
     {
         List<Product> TGetProductsWithCategory();
+        public int TProductCount();
     }
 }
