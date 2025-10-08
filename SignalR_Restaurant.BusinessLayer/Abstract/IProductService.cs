@@ -14,5 +14,8 @@ namespace SignalR_Restaurant.BusinessLayer.Abstract
         public int TProductCount();
         public int TProductCountByCategoryNameHamburger();
         public int TProductCountByCategoryNameDrink();
+        decimal TAverageProductPrice();
+        string TProductNameByMaximumPrice();
+        string TProductNameByMinimumPrice();
     }
 }

@@ -13,6 +13,11 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             _productDal = productDal;
         }
 
+        public decimal TAverageProductPrice()
+        {
+            return _productDal.AverageProductPrice();
+        }
+
         public void TDelete(Product entity)
         {
             _productDal.Delete(entity);
@@ -51,6 +56,16 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
         public int TProductCountByCategoryNameHamburger()
         {
             return _productDal.ProductCountByCategoryNameHamburger();
+        }
+
+        public string TProductNameByMaximumPrice()
+        {
+            return _productDal.ProductNameByMaximumPrice();
+        }
+
+        public string TProductNameByMinimumPrice()
+        {
+            return _productDal.ProductNameByMinimumPrice();
         }
 
         public void TUpdate(Product entity)

@@ -1,9 +1,20 @@
 ﻿Eklenecekler:
--- CategoryCount
--- ProductCount
--- Aktif kategori sayısı
--- Passif kategori sayısı
+- CategoryCount
+- ProductCount
+- Aktif kategori sayısı
+- Passif kategori sayısı
 
--- Kategoriye göre ürün sayısı1 örn: "Kategori adı 'Hamburger' olan ürünleri getir."
+- Kategoriye göre ürün sayısı1 örn: "Kategori adı 'Hamburger' olan ürünleri getir."
 	=> Select * from Products Where CategoryId = (select categoryid from categories where categoryname='Hamburger')
 
+-- Ortalama Fiyat
+-- En yüksek ürünlü fiyat
+-- En düşük ürünlü fiyat
+-- Ortalama hamburger fiyatı
+
+-- Toplam sipariş sayısı
+-- Aktif sipariş sayısı
+-- Son sipariş tutarı
+-- Kasadaki tutar
+-- Bugünki kazanç
+-- Masa sayısı

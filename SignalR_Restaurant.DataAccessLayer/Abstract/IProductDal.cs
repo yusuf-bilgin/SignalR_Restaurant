@@ -13,6 +13,9 @@ namespace SignalR_Restaurant.DataAccessLayer.Abstract
         int ProductCount();
         int ProductCountByCategoryNameHamburger();
         int ProductCountByCategoryNameDrink();
+        decimal AverageProductPrice();
+        string ProductNameByMaximumPrice();
+        string ProductNameByMinimumPrice();
     }
 }
  

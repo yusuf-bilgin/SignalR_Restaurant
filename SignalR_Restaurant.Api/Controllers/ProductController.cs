@@ -28,25 +28,6 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(values);
         }
 
-        [HttpGet("count")]
-        public IActionResult GetProductCount()
-        {
-            var values = _productService.TProductCount();
-            return Ok(values);
-        }
-
-        [HttpGet("count/hamburger")]
-        public IActionResult GetHamburgerCount()
-        {
-            var values = _productService.TProductCountByCategoryNameHamburger();
-            return Ok(values);
-        }
-        [HttpGet("count/drink")]
-        public IActionResult GetDrinkCount()
-        {
-            var values = _productService.TProductCountByCategoryNameDrink();
-            return Ok(values);
-        }
         [HttpGet("GetProductWithCategory")]
         public IActionResult GetProductWithCategory()
         {
@@ -85,5 +66,49 @@ namespace SignalR_Restaurant.Api.Controllers
             _productService.TUpdate(product);
             return Ok("Ürün Güncellendi");
         }
+
+        [HttpGet("count")]
+        public IActionResult GetProductCount()
+        {
+            var values = _productService.TProductCount();
+            return Ok(values);
+        }
+
+        [HttpGet("count/hamburger")]
+        public IActionResult GetHamburgerCount()
+        {
+            var values = _productService.TProductCountByCategoryNameHamburger();
+            return Ok(values);
+        }
+
+        [HttpGet("count/drink")]
+        public IActionResult GetDrinkCount()
+        {
+            var values = _productService.TProductCountByCategoryNameDrink();
+            return Ok(values);
+        }
+
+        [HttpGet("price/average")]
+        public IActionResult GetAveragePrice()
+        {
+            var values = _productService.TAverageProductPrice();
+            return Ok(values);
+        }
+
+        [HttpGet("price/max/name")]
+        public IActionResult GetProductNameByMaxPrice()
+        {
+            var values = _productService.TProductNameByMaximumPrice();
+            return Ok(values);
+        }
+
+        [HttpGet("price/min/name")]
+        public IActionResult GetProductNameByMinPrice()
+        {
+            var values = _productService.TProductNameByMinimumPrice();
+            return Ok(values);
+        }
+
+
     }
 }

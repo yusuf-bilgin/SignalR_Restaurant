@@ -33,13 +33,31 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
         public int ProductCountByCategoryNameDrink()
         {
             using var context = new RestaurantContext();
-            return context.Products.Where(x => x.CategoryId == (context.Categories.Where(y => y.Name == "İçecek").Select(z => z.CategoryId).FirstOrDefault())).Count();
+            return context.Products.Where(x => x.CategoryId == context.Categories.Where(y => y.Name == "İçecek").Select(z => z.CategoryId).FirstOrDefault()).Count();
+        }
+
+        public decimal AverageProductPrice()
+        {
+            using var context = new RestaurantContext();
+            return context.Products.Average(x => x.Price);
         }
 
         public int ProductCountByCategoryNameHamburger()
         {
             using var context = new RestaurantContext();
-            return context.Products.Where(x => x.CategoryId == (context.Categories.Where(y => y.Name == "Hamburger").Select(z => z.CategoryId).FirstOrDefault())).Count();
+            return context.Products.Where(x => x.CategoryId == context.Categories.Where(y => y.Name == "Hamburger").Select(z => z.CategoryId).FirstOrDefault()).Count();
+        }
+
+        public string ProductNameByMaximumPrice()
+        {
+            using var context = new RestaurantContext();
+            return context.Products.Where(x => x.Price == context.Products.Max(y => y.Price)).Select(z => z.Name).FirstOrDefault();
+        }
+
+        public string ProductNameByMinimumPrice()
+        {
+            using var context = new RestaurantContext();
+            return context.Products.Where(x => x.Price == context.Products.Min(y => y.Price)).Select(z => z.Name).FirstOrDefault();
         }
     }
 }
