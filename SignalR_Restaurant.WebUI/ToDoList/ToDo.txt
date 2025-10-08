@@ -1,5 +1,9 @@
 ﻿Eklenecekler:
 -- CategoryCount
 -- ProductCount
-- Aktif kategori sayısı
-- Passif kategori sayısı
+-- Aktif kategori sayısı
+-- Passif kategori sayısı
+
+-- Kategoriye göre ürün sayısı1 örn: "Kategori adı 'Hamburger' olan ürünleri getir."
+	=> Select * from Products Where CategoryId = (select categoryid from categories where categoryname='Hamburger')
+

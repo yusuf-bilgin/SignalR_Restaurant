@@ -29,5 +29,17 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
             using var context = new RestaurantContext();
             return context.Products.Count();
         }
+
+        public int ProductCountByCategoryNameDrink()
+        {
+            using var context = new RestaurantContext();
+            return context.Products.Where(x => x.CategoryId == (context.Categories.Where(y => y.Name == "İçecek").Select(z => z.CategoryId).FirstOrDefault())).Count();
+        }
+
+        public int ProductCountByCategoryNameHamburger()
+        {
+            using var context = new RestaurantContext();
+            return context.Products.Where(x => x.CategoryId == (context.Categories.Where(y => y.Name == "Hamburger").Select(z => z.CategoryId).FirstOrDefault())).Count();
+        }
     }
 }
