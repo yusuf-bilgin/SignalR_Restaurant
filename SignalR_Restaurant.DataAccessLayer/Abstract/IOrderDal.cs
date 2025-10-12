@@ -9,5 +9,7 @@ namespace SignalR_Restaurant.DataAccessLayer.Abstract
 {
     public interface IOrderDal : IGenericDal<Order>
     {
+        int TotalOrderCount(); // Toplam sipariş sayısını döner
+        int ActiveOrderCount();
     }
 }

@@ -16,6 +16,12 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
         {
             _orderDal = orderDal;
         }
+
+        public int TActiveOrderCount()
+        {
+            return _orderDal.ActiveOrderCount();
+        }
+
         public void TDelete(Order entity)
         {
             throw new NotImplementedException();
@@ -34,6 +40,11 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
         public void TInsert(Order entity)
         {
             throw new NotImplementedException();
+        }
+
+        public int TTotalOrderCount()
+        {
+            return _orderDal.TotalOrderCount();
         }
 
         public void TUpdate(Order entity)
