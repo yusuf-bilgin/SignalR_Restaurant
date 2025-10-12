@@ -22,6 +22,12 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
             return context.Orders.Where(x => x.Description == "Müşteri Masada").Count();
         }
 
+        public decimal LastOrderPrice()
+        {
+            using var context = new RestaurantContext();
+            return context.Orders.OrderByDescending(x => x.OrderId).Select(y => y.TotalAmount).FirstOrDefault();
+        }
+
         public int TotalOrderCount()
         {
             using var context = new RestaurantContext();

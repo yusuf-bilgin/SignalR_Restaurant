@@ -17,7 +17,7 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             _orderDal = orderDal;
         }
 
-        public int TActiveOrderCount()
+        public int ActiveOrderCount()
         {
             return _orderDal.ActiveOrderCount();
         }
@@ -42,7 +42,12 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public int TTotalOrderCount()
+        public decimal LAstOrderPrice()
+        {
+            return _orderDal.LastOrderPrice();
+        }
+
+        public int TotalOrderCount()
         {
             return _orderDal.TotalOrderCount();
         }

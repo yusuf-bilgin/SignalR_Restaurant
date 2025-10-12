@@ -11,5 +11,6 @@ namespace SignalR_Restaurant.DataAccessLayer.Abstract
     {
         int TotalOrderCount(); // Toplam sipariş sayısını döner
         int ActiveOrderCount();
+        decimal LastOrderPrice(); // Son siparişin toplam tutarını döner
     }
 }

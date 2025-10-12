@@ -15,16 +15,23 @@ namespace SignalR_Restaurant.Api.Controllers
         }
 
         [HttpGet("count/total")]
-        public IActionResult TotalOrderCount()
+        public IActionResult GetTotalOrderCount()
         {
-            var values = _orderService.TTotalOrderCount();
+            var values = _orderService.TotalOrderCount();
             return Ok(values);
         }
 
         [HttpGet("count/active")]
-        public IActionResult ActiveOrderCount()
+        public IActionResult GetActiveOrderCount()
         {
-            var values = _orderService.TActiveOrderCount();
+            var values = _orderService.ActiveOrderCount();
+            return Ok(values);
+        }
+
+        [HttpGet("last/price")]
+        public IActionResult GetLastOrderPrice()
+        {
+            var values = _orderService.LAstOrderPrice();
             return Ok(values);
         }
     }

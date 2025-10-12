@@ -9,7 +9,8 @@ namespace SignalR_Restaurant.BusinessLayer.Abstract
 {
     public interface IOrderService : IGenericService<Order>
     {
-        int TTotalOrderCount();
-        int TActiveOrderCount();
+        int TotalOrderCount();
+        int ActiveOrderCount();
+        decimal LAstOrderPrice();
     }
 }
