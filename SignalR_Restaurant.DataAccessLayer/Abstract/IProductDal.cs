@@ -16,6 +16,7 @@ namespace SignalR_Restaurant.DataAccessLayer.Abstract
         decimal AverageProductPrice();
         string ProductNameByMaximumPrice();
         string ProductNameByMinimumPrice();
+        decimal AverageProductPriceByHamburger();
     }
 }
  

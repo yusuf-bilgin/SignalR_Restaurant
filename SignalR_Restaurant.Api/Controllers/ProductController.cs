@@ -109,6 +109,11 @@ namespace SignalR_Restaurant.Api.Controllers
             return Ok(values);
         }
 
-
+        [HttpGet("price/average/hamburger")]
+        public IActionResult GetAveragePriceByHamburger()
+        {
+            var values = _productService.TAverageProductPriceByHamburger();
+            return Ok(values);
+        }
     }
 }

@@ -51,13 +51,33 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
         public string ProductNameByMaximumPrice()
         {
             using var context = new RestaurantContext();
-            return context.Products.Where(x => x.Price == context.Products.Max(y => y.Price)).Select(z => z.Name).FirstOrDefault();
+
+            var maxPrice = context.Products.Max(y => y.Price);
+            return context.Products.Where(x => x.Price == maxPrice).Select(z => z.Name).FirstOrDefault(); // Find the product with that maximum price
         }
 
         public string ProductNameByMinimumPrice()
         {
             using var context = new RestaurantContext();
-            return context.Products.Where(x => x.Price == context.Products.Min(y => y.Price)).Select(z => z.Name).FirstOrDefault();
+
+            var minPrice = context.Products.Min(y => y.Price);
+            return context.Products.Where(x => x.Price == minPrice).Select(z => z.Name).FirstOrDefault(); // Find the product with that minimum price
+        }
+
+        public decimal AverageProductPriceByHamburger()
+        {
+            using var context = new RestaurantContext();
+
+            // Önce, kategori adı "Hamburger" olan kategorinin CategoryId'sini al
+            var categoryId = context.Categories
+                .Where(y => y.Name == "Hamburger")
+                .Select(z => z.CategoryId)
+                .FirstOrDefault();
+
+            // Sonra, bu CategoryId'ye sahip ürünlerin ortalama fiyatını hesapla
+            return context.Products
+                .Where(x => x.CategoryId == categoryId)
+                .Average(w => w.Price);
         }
     }
 }

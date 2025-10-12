@@ -18,6 +18,11 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             return _productDal.AverageProductPrice();
         }
 
+        public decimal TAverageProductPriceByHamburger()
+        {
+            return _productDal.AverageProductPriceByHamburger();
+        }
+
         public void TDelete(Product entity)
         {
             _productDal.Delete(entity);
