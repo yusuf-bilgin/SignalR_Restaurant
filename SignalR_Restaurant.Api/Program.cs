@@ -59,6 +59,9 @@ builder.Services.AddScoped<IOrderDal, EfOrderDal>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
 builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
 
+builder.Services.AddScoped<ICashRegisterService, CashRegisterManager>();
+builder.Services.AddScoped<ICashRegisterDal, EfCashRegisterDal>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
