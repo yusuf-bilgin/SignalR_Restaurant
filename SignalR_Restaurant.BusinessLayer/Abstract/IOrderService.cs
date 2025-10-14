@@ -11,6 +11,7 @@ namespace SignalR_Restaurant.BusinessLayer.Abstract
     {
         int TotalOrderCount();
         int ActiveOrderCount();
-        decimal LAstOrderPrice();
+        decimal LastOrderPrice();
+        decimal TodaysAmount();
     }
 }

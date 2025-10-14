@@ -42,7 +42,7 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public decimal LAstOrderPrice()
+        public decimal LastOrderPrice()
         {
             return _orderDal.LastOrderPrice();
         }
@@ -55,6 +55,11 @@ namespace SignalR_Restaurant.BusinessLayer.Concrete
         public void TUpdate(Order entity)
         {
             throw new NotImplementedException();
+        }
+
+        public decimal TodaysAmount()
+        {
+            return _orderDal.TodaysAmount();
         }
     }
 }

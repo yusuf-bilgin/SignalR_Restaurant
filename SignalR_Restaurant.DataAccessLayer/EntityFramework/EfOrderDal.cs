@@ -25,7 +25,21 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
         public decimal LastOrderPrice()
         {
             using var context = new RestaurantContext();
-            return context.Orders.OrderByDescending(x => x.OrderId).Select(y => y.TotalAmount).FirstOrDefault();
+            return context.Orders
+                .OrderByDescending(x => x.OrderId)
+                .Select(y => y.TotalAmount).FirstOrDefault();
+        }
+
+        public decimal TodaysAmount()
+        {
+            using var context = new RestaurantContext();
+            var today = DateTime.Today;
+            var tomorrow = today.AddDays(1);
+
+            // Bugünün siparişlerini filtrele (Saat 00:00 olma zorunluluğundan kurtulduk)
+            return context.Orders
+                .Where(x => x.Date >= today && x.Date < tomorrow) 
+                .Sum(y => y.TotalAmount);
         }
 
         public int TotalOrderCount()

@@ -31,7 +31,14 @@ namespace SignalR_Restaurant.Api.Controllers
         [HttpGet("last/price")]
         public IActionResult GetLastOrderPrice()
         {
-            var values = _orderService.LAstOrderPrice();
+            var values = _orderService.LastOrderPrice();
+            return Ok(values);
+        }
+
+        [HttpGet("amount/today")]
+        public IActionResult GetTodaysAmount()
+        {
+            var values = _orderService.TodaysAmount();
             return Ok(values);
         }
     }
