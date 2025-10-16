@@ -19,7 +19,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44369/api/Product/GetProductWithCategory");
+            var responseMessage = await client.GetAsync("https://localhost:7181/api/Product/GetProductWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -33,7 +33,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> CreateProduct()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44369/api/Category");
+            var responseMessage = await client.GetAsync("https://localhost:7181/api/Category");
             var jsonaData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonaData);
 
@@ -53,7 +53,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44369/api/Product", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7181/api/Product", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -64,7 +64,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44369/api/Product/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7181/api/Product/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -76,7 +76,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             var client1 = _httpClientFactory.CreateClient();
-            var responseMessage1 = await client1.GetAsync("https://localhost:44369/api/Category");
+            var responseMessage1 = await client1.GetAsync("https://localhost:7181/api/Category");
             var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
             var values1 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData1);
             List<SelectListItem> values2 = (from x in values1
@@ -89,7 +89,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
 
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44369/api/Product/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7181/api/Product/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -104,7 +104,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44369/api/Product", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7181/api/Product", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

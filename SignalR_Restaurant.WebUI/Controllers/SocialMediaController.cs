@@ -17,7 +17,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44369/api/SocialMedia"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
+            var responseMessage = await client.GetAsync("https://localhost:7181/api/SocialMedia"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -42,7 +42,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createSocialMediaDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44369/api/SocialMedia", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7181/api/SocialMedia", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,7 +53,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> DeleteSocialMedia(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44369/api/SocialMedia/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7181/api/SocialMedia/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -68,7 +68,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> UpdateSocialMedia(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44369/api/SocialMedia/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7181/api/SocialMedia/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -83,7 +83,7 @@ namespace SignalR_Restaurant.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateSocialMediaDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44369/api/SocialMedia/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7181/api/SocialMedia/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
