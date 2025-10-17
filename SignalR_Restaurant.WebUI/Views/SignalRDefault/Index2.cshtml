@@ -19,14 +19,15 @@
 					<script type="text/javascript">
 						$(document).ready(() => {
 
-							var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44369/SignalRHub").build();
+							var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7181/SignalRHub").build();
 
 							$("#connstatus").text(connection.state); // bağlantı durumu
 
 							connection.start().then(() => {
 								$("#connstatus").text(connection.state);
 
-								// Her 5 saniyede bir kategori sayısını al(interval metodu sayesinde). Not: Bu yöntem trafiği yoruyor. "sunucudan otomatik push" yapmalı.
+								connection.invoke("SendCategoryCount"); // İlk bağlantıda kategori sayısını al
+								// Sonra her 5 saniyede bir kategori sayısını al(interval metodu sayesinde). Not: Bu yöntem trafiği yoruyor. "sunucudan otomatik push" yapmalı.
 								setInterval(() => {
 									connection.invoke("SendCategoryCount");
 								}, 5000);
@@ -49,8 +50,8 @@
 
 <div class="row">
 	<div class="col-md-8 offset-2">
-		<div class="alert alert-success">Bağlantının Durumu:<strong id="connstatus"></strong></div>
-		<div class="alert alert-info">Kategori Sayısı:<strong id="categorycount"></strong></div>
+		<div class="alert alert-success">Bağlantının Durumu: <strong id="connstatus"></strong></div>
+		<div class="alert alert-info">Kategori Sayısı: <strong id="categorycount"></strong></div>
 	</div>
 </div>
 
