@@ -19,24 +19,29 @@
 
 				connection.start().then(() => {
 					$("#connstatus").text(connection.state);
-
-					// İlk açıldığında önden kategori sayısını al
-					// Sonra her 5 saniyede bir kategori sayısını al(interval metodu sayesinde). Not: Bu yöntem trafiği yoruyor. "sunucudan otomatik push" yapmalı.
-					connection.invoke("SendCategoryCount");
-					connection.invoke("SendProductCount");
-
+					
+					/// ÖNEMLİ NOT: Aşağıdaki metotlar sunucuda tanımlı olan metotlardır. Yani Hub sınıfındaki metot isimleri
+					// İlk açıldığında önden sayıları al
+					// Sonra her 5 saniyede bir interval metodu sayesinde yenile. Not: Bu yöntem trafiği yoruyor. "sunucudan otomatik push" yapmalı.
+					connection.invoke("SendStatistics");
 					setInterval(() => {
-						connection.invoke("SendCategoryCount");
-						connection.invoke("SendProductCount");
+						connection.invoke("SendStatistics");
 					}, 5000);
+
 				}).catch((err) => { console.log(err) });
 
+				// Hub sınıfındaki metotların içinde bulunanlar
 				connection.on("ReceiveCategoryCount", (value) => {
-					$("#categorycount").text(value);
+					$("#categoryCount").text(value);
 				});
-
 				connection.on("ReceiveProductCount", (value2) => {
 					$("#productcount").text(value2);
+				});
+				connection.on("ReceiveActiveCategoryCount", (value3) => {
+					$("#activecategorycount").text(value3);
+				});
+				connection.on("ReceivePassiveCategoryCount", (value4) => {
+					$("#passivecategorycount").text(value4);
 				});
 			});
 		</script>
@@ -56,7 +61,7 @@
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
 									<p class="card-category">Kategori Sayısı</p>
-									<h4 class="card-title" id="categorycount"></h4>
+									<h4 class="card-title" id="categoryCount"></h4>
 								</div>
 							</div>
 						</div>
@@ -88,13 +93,13 @@
 						<div class="row">
 							<div class="col-5">
 								<div class="icon-big text-center">
-									<i class="la la-newspaper-o"></i>
+									<i class="la la-check-circle"></i>
 								</div>
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Subscribers</p>
-									<h4 class="card-title">1303</h4>
+									<p class="card-category">Aktif Kategoriler</p>
+									<h4 class="card-title" id="activecategorycount"></h4>
 								</div>
 							</div>
 						</div>
@@ -107,13 +112,13 @@
 						<div class="row">
 							<div class="col-5">
 								<div class="icon-big text-center">
-									<i class="la la-check-circle"></i>
+									<i class="la la-close"></i>
 								</div>
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Order</p>
-									<h4 class="card-title">576</h4>
+									<p class="card-category">Pasif Kategoriler</p>
+									<h4 class="card-title" id="passivecategorycount"></h4>
 								</div>
 							</div>
 						</div>
