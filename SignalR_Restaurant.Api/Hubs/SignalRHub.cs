@@ -9,10 +9,16 @@ namespace SignalR_Restaurant.Api.Hubs
         /// => Çok fazla servis yazmak yerine mediator pattern kullanılabilir denildi. (Araştır!) <=
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
-        public SignalRHub(ICategoryService categoryService, IProductService productService)
+        public readonly IOrderService _orderService;
+        private readonly ICashRegisterService _cashRegisterService;
+        private readonly IRestaurantTableService _restaurantTableService;
+        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, ICashRegisterService cashRegisterService, IRestaurantTableService restaurantTableService)
         {
             _categoryService = categoryService;
             _productService = productService;
+            _orderService = orderService;
+            _cashRegisterService = cashRegisterService;
+            _restaurantTableService = restaurantTableService;
         }
 
         public async Task SendStatistics()
@@ -43,6 +49,28 @@ namespace SignalR_Restaurant.Api.Hubs
 
             var value9 = _productService.TProductNameByMinimumPrice();
             await Clients.All.SendAsync("ReceiveCheapestProduct", value9);
+
+            var value10 = _productService.TAverageProductPriceByHamburger();
+            await Clients.All.SendAsync("ReceiveAverageHamburgerPrice", value10.ToString("0.00") + " ₺");
+
+            var value11 = _orderService.TotalOrderCount();
+            await Clients.All.SendAsync("ReceiveTotalOrderCount", value11);
+
+            var value12 = _orderService.ActiveOrderCount();
+            await Clients.All.SendAsync("ReceiveActiveOrderCount", value12);
+
+            var value13 = _orderService.LastOrderPrice();
+            await Clients.All.SendAsync("ReceiveLastOrderPrice", value13.ToString("0.00") + " ₺");
+
+            var value14 = _cashRegisterService.TotalAmount();
+            await Clients.All.SendAsync("ReceiveTotalCashAmount", value14.ToString("0.00") + " ₺");
+
+            var value15 = _orderService.TodaysAmount();
+            await Clients.All.SendAsync("ReceiveTodaysCashAmount", value15.ToString("0.00") + " ₺");
+
+            var value16 = _restaurantTableService.TotalTableCount();
+            await Clients.All.SendAsync("ReceiveTotalTableCount", value16);
+
         }
     }
 }

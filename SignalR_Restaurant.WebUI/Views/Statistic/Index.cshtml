@@ -34,29 +34,50 @@
 				connection.on("ReceiveCategoryCount", (value) => {
 					$("#categoryCount").text(value);
 				});
-				connection.on("ReceiveProductCount", (value2) => {
-					$("#productcount").text(value2);
+				connection.on("ReceiveProductCount", (value) => {
+					$("#productcount").text(value);
 				});
-				connection.on("ReceiveActiveCategoryCount", (value3) => {
-					$("#activecategorycount").text(value3);
+				connection.on("ReceiveActiveCategoryCount", (value) => {
+					$("#activecategorycount").text(value);
 				});
-				connection.on("ReceivePassiveCategoryCount", (value4) => {
-					$("#passivecategorycount").text(value4);
+				connection.on("ReceivePassiveCategoryCount", (value) => {
+					$("#passivecategorycount").text(value);
 				});
-				connection.on("ReceiveHamburgerCount", (value5) => {
-					$("#hamburgerCount").text(value5);
+				connection.on("ReceiveHamburgerCount", (value) => {
+					$("#hamburgerCount").text(valvalueue5);
 				});
-				connection.on("ReceiveDrinkCount", (value6) => {
-					$("#drinkCount").text(value6);
+				connection.on("ReceiveDrinkCount", (value) => {
+					$("#drinkCount").text(value);
 				});
-				connection.on("ReceiveAverageProductPrice", (value7) => {
-					$("#averageProductPrice").text(value7);
+				connection.on("ReceiveAverageProductPrice", (value) => {
+					$("#averageProductPrice").text(value);
 				});
-				connection.on("ReceiveMostExpensiveProduct", (value7) => {
-					$("#mostExpensiveProduct").text(value7);
+				connection.on("ReceiveMostExpensiveProduct", (value) => {
+					$("#mostExpensiveProduct").text(value);
 				});
-				connection.on("ReceiveCheapestProduct", (value7) => {
-					$("#cheapestProduct").text(value7);
+				connection.on("ReceiveCheapestProduct", (value) => {
+					$("#cheapestProduct").text(value);
+				});
+				connection.on("ReceiveAverageHamburgerPrice", (value) => {
+					$("#averageHamburgerPrice").text(value);
+				});
+				connection.on("ReceiveTotalOrderCount", (value) => {
+					$("#totalOrderCount").text(value);
+				});
+				connection.on("ReceiveActiveOrderCount", (value) => {
+					$("#activeOrderCount").text(value);
+				});
+				connection.on("ReceiveLastOrderPrice", (value) => {
+					$("#lastOrderPrice").text(value);
+				});
+				connection.on("ReceiveTotalCashAmount", (value) => {
+					$("#totalCashAmount").text(value);
+				});
+				connection.on("ReceiveTodaysCashAmount", (value) => {
+					$("#todaysCashAmount").text(value);
+				});
+				connection.on("ReceiveTotalTableCount", (value) => {
+					$("#totalTableCount").text(value);
 				});
 			});
 		</script>
@@ -250,8 +271,8 @@
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Sales</p>
-									<h4 class="card-title">$ 1,345</h4>
+									<p class="card-category">Hamburger Kategorisi Ortalama Fiyatı</p>
+									<h4 class="card-title" id="averageHamburgerPrice"></h4>
 								</div>
 							</div>
 						</div>
@@ -269,8 +290,8 @@
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Subscribers</p>
-									<h4 class="card-title">1303</h4>
+									<p class="card-category">Toplam Sipariş Sayısı</p>
+									<h4 class="card-title" id="totalOrderCount"></h4>
 								</div>
 							</div>
 						</div>
@@ -283,13 +304,13 @@
 						<div class="row">
 							<div class="col-5">
 								<div class="icon-big text-center">
-									<i class="la la-check-circle"></i>
+									<i class="la la-fire"></i>
 								</div>
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Order</p>
-									<h4 class="card-title">576</h4>
+									<p class="card-category">Aktif Sipariş Sayısı</p>
+									<h4 class="card-title" id="activeOrderCount"></h4>
 								</div>
 							</div>
 						</div>
@@ -309,8 +330,8 @@
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Visitors</p>
-									<h4 class="card-title">1,294</h4>
+									<p class="card-category">Son Siparişin Tutarı</p>
+									<h4 class="card-title" id="lastOrderPrice"></h4>
 								</div>
 							</div>
 						</div>
@@ -323,13 +344,13 @@
 						<div class="row">
 							<div class="col-5">
 								<div class="icon-big text-center">
-									<i class="la la-bar-chart"></i>
+									<i class="la la-money"></i>
 								</div>
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Sales</p>
-									<h4 class="card-title">$ 1,345</h4>
+									<p class="card-category">Kasadaki Toplam Tutar</p>
+									<h4 class="card-title" id="totalCashAmount"></h4>
 								</div>
 							</div>
 						</div>
@@ -342,13 +363,13 @@
 						<div class="row">
 							<div class="col-5">
 								<div class="icon-big text-center">
-									<i class="la la-newspaper-o"></i>
+									<i class="la la-map-marker"></i>
 								</div>
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Subscribers</p>
-									<h4 class="card-title">1303</h4>
+									<p class="card-category">Bugünün Kazancı</p>
+									<h4 class="card-title" id="todaysCashAmount"></h4>
 								</div>
 							</div>
 						</div>
@@ -361,13 +382,13 @@
 						<div class="row">
 							<div class="col-5">
 								<div class="icon-big text-center">
-									<i class="la la-check-circle"></i>
+									<i class="la la-table"></i>
 								</div>
 							</div>
 							<div class="col-7 d-flex align-items-center">
 								<div class="numbers">
-									<p class="card-category">Order</p>
-									<h4 class="card-title">576</h4>
+									<p class="card-category">Toplam Masa Sayısı</p>
+									<h4 class="card-title" id="totalTableCount"></h4>
 								</div>
 							</div>
 						</div>
