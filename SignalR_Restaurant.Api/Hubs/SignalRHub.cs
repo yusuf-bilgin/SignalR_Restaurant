@@ -70,7 +70,18 @@ namespace SignalR_Restaurant.Api.Hubs
 
             var value16 = _restaurantTableService.TotalTableCount();
             await Clients.All.SendAsync("ReceiveTotalTableCount", value16);
+        }
 
+        public async Task SendProgress()
+        {
+            var value = _cashRegisterService.TotalAmount();
+            await Clients.All.SendAsync("ReceiveTotalAmount", value.ToString("0.00"));
+
+            var value2 = _orderService.ActiveOrderCount();
+            await Clients.All.SendAsync("ReceiveActiveOrderCount", value2);
+
+            var value3 = _restaurantTableService.TotalTableCount();
+            await Clients.All.SendAsync("ReceiveTotalTableCount", value3);
         }
     }
 }
