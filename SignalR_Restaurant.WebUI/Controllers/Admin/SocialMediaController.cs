@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SignalR_Restaurant.WebUI.Dtos.SocialMediaDtos;
 
-namespace SignalR_Restaurant.WebUI.Controllers
+namespace SignalR_Restaurant.WebUI.Controllers.Admin
 {
     public class SocialMediaController : Controller
     {

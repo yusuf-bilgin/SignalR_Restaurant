@@ -58,7 +58,8 @@ namespace SignalR_Restaurant.Api.Controllers
         public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
         {
             About about = new About
-            {
+            { 
+                AboutId = updateAboutDto.AboutId,
                 Title = updateAboutDto.Title,
                 Description = updateAboutDto.Description,
                 ImageUrl = updateAboutDto.ImageUrl

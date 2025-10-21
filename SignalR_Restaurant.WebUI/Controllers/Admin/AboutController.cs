@@ -1,15 +1,15 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalR_Restaurant.WebUI.Dtos.DiscountDtos;
+using SignalR_Restaurant.WebUI.Dtos.AboutDtos;
 
-namespace SignalR_Restaurant.WebUI.Controllers
+namespace SignalR_Restaurant.WebUI.Controllers.Admin
 {
-    public class DiscountController : Controller
+    public class AboutController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public DiscountController(IHttpClientFactory httpClientFactory)
+        public AboutController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,12 +17,12 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7181/api/Discount"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
+            var responseMessage = await client.GetAsync("https://localhost:7181/api/About"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultDiscountDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
                 return View(values);
             }
             else
@@ -32,17 +32,17 @@ namespace SignalR_Restaurant.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateDiscount()
+        public IActionResult CreateAbout()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateDiscount(CreateDiscountDto createDiscountDto)
+        public async Task<IActionResult> CreateAbout(CreateAboutDto createAboutDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createDiscountDto);
+            var jsonData = JsonConvert.SerializeObject(createAboutDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7181/api/Discount", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7181/api/About", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -50,10 +50,10 @@ namespace SignalR_Restaurant.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteDiscount(int id)
+        public async Task<IActionResult> DeleteAbout(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7181/api/Discount/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7181/api/About/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,25 +65,25 @@ namespace SignalR_Restaurant.WebUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateDiscount(int id)
+        public async Task<IActionResult> UpdateAbout(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7181/api/Discount/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7181/api/About/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateDiscountDto>(jsonData); // Güncellenecek veriyi almak için UpdateDiscountDto kullanılıyor
+                var value = JsonConvert.DeserializeObject<UpdateAboutDto>(jsonData); // Güncellenecek veriyi almak için UpdateAboutDto kullanılıyor
                 return View(value);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateDiscount(UpdateDiscountDto updateDiscountDto)
+        public async Task<IActionResult> UpdateAbout(UpdateAboutDto updateAboutDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateDiscountDto);
+            var jsonData = JsonConvert.SerializeObject(updateAboutDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7181/api/Discount/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7181/api/About/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

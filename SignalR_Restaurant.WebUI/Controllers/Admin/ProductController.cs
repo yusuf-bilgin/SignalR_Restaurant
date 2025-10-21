@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using SignalR_Restaurant.WebUI.Dtos.CategoryDtos;
 using SignalR_Restaurant.WebUI.Dtos.ProductDtos;
 
-namespace SignalR_Restaurant.WebUI.Controllers
+namespace SignalR_Restaurant.WebUI.Controllers.Admin
 {
     public class ProductController : Controller
     {

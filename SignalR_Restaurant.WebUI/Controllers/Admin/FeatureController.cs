@@ -1,17 +1,15 @@
-﻿using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalR_Restaurant.WebUI.Dtos.CategoryDtos;
+using SignalR_Restaurant.WebUI.Dtos.FeatureDtos;
 
-namespace SignalR_Restaurant.WebUI.Controllers
+namespace SignalR_Restaurant.WebUI.Controllers.Admin
 {
-    public class CategoryController : Controller
+    public class FeatureController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public CategoryController(IHttpClientFactory httpClientFactory)
+        public FeatureController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -19,12 +17,12 @@ namespace SignalR_Restaurant.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7181/api/Category"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
+            var responseMessage = await client.GetAsync("https://localhost:7181/api/Feature"); //api'nin çalıştığı port (yanlışlıkla UI'ın çalıştığı portu yazma)
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultFeatureDto>>(jsonData);
                 return View(values);
             }
             else
@@ -34,18 +32,17 @@ namespace SignalR_Restaurant.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateCategory()
+        public IActionResult CreateFeature()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto)
         {
-            createCategoryDto.Status = true;
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createCategoryDto);
-            StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7181/api/Category", stringContent);
+            var jsonData = JsonConvert.SerializeObject(createFeatureDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("https://localhost:7181/api/Feature", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,10 +50,10 @@ namespace SignalR_Restaurant.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteCategory(int id)
+        public async Task<IActionResult> DeleteFeature(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7181/api/Category/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7181/api/Feature/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -68,25 +65,25 @@ namespace SignalR_Restaurant.WebUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateCategory(int id)
+        public async Task<IActionResult> UpdateFeature(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7181/api/Category/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7181/api/Feature/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateCategoryDto>(jsonData); // Güncellenecek veriyi almak için UpdateCategoryDto kullanılıyor
+                var value = JsonConvert.DeserializeObject<UpdateFeatureDto>(jsonData); // Güncellenecek veriyi almak için UpdateFeatureDto kullanılıyor
                 return View(value);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateCategoryDto);
+            var jsonData = JsonConvert.SerializeObject(updateFeatureDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7181/api/Category/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7181/api/Feature/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
