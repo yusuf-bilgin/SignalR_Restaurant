@@ -1,8 +1,10 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/ClientLayout/Index.cshtml";
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/ClientLayout/Index.cshtml";
 }
 
-<h1>Index</h1>
+@await Component.InvokeAsync("ClientHomeSlider")
 
+</div>
+
+@await Component.InvokeAsync("ClientHomeOffer")
