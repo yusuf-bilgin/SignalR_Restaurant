@@ -9,15 +9,11 @@
 
 @await Component.InvokeAsync("ClientHead")
 
-<body>	
-	<div class="hero_area">		
-		<div class="bg-box">
-			<img src="~/RestaurantDashboard/images/hero-bg.jpg" alt="">
-		</div>		
-		@await Component.InvokeAsync("ClientNavbar") @* İsmi Header olmalı navbar bunun içinde *@
+<body>
 
-		@RenderBody()
-	</div>
+	@await Component.InvokeAsync("ClientNavbar") @* İsmi Header olmalı navbar bunun içinde *@
+
+	@RenderBody()
 
 	@await Component.InvokeAsync("ClientFooter")
 	@await Component.InvokeAsync("ClientScripts")
