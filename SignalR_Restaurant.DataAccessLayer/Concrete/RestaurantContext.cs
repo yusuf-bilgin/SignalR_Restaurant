@@ -28,5 +28,6 @@ namespace SignalR_Restaurant.DataAccessLayer.Concrete
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<CashRegister> CashRegisters { get; set; }
         public DbSet<RestaurantTable> RestaurantTables { get; set; }
+        public DbSet<ClientSlider> ClientSliders { get; set; }
     }
 }
