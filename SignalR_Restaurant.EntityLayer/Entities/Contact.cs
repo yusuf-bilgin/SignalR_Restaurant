@@ -12,6 +12,10 @@ namespace SignalR_Restaurant.EntityLayer.Entities
         public string? Location { get; set; }
         public string? Phone { get; set; }
         public string? Email { get; set; }
+        public string? FooterTitle { get; set; }
         public string? FooterDescription { get; set; }
+        public string? OpeningDays { get; set; }
+        public string? OpenDaysNote { get; set; }
+        public string? OpeningHours { get; set; }
     }
 }
