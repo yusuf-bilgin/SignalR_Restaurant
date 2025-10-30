@@ -11,6 +11,7 @@
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; } // Navigation property - OrderDetail tablosuyla ilişki
+        public List<OrderDetail> OrderDetails { get; set; } // Navigation property - OrderDetail tablosuyla ilişki (one-to-many)
+        public List<Basket> Baskets { get; set; } // Navigation property - Basket tablosuyla ilişki
     }
 }
