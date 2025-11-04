@@ -12,17 +12,15 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
 {
     public class EfBasketDal : GenericRepository<Basket>, IBasketDal
     {
+        private readonly RestaurantContext _context;
         public EfBasketDal(RestaurantContext context) : base(context)
         {
+            _context = context;
         }
 
         public List<Basket> GetBasketsByRestaurantTableId(int tableId)
         {
-            using var context = new RestaurantContext();
-            var values = context.Baskets.Where(b => b.RestaurantTableId == tableId)
-                .ToList();
-
-            return values;
+            return _context.Baskets.Where(b => b.RestaurantTableId == tableId).ToList();
         }
     }
 }
