@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SignalR_Restaurant.DataAccessLayer.Abstract;
 using SignalR_Restaurant.DataAccessLayer.Concrete;
 using SignalR_Restaurant.DataAccessLayer.Repositories;
@@ -20,7 +21,10 @@ namespace SignalR_Restaurant.DataAccessLayer.EntityFramework
 
         public List<Basket> GetBasketsByRestaurantTableId(int tableId)
         {
-            return _context.Baskets.Where(b => b.RestaurantTableId == tableId).ToList();
+            return _context.Baskets
+                .Where(b => b.RestaurantTableId == tableId)
+                .Include(b => b.Product)
+                .ToList();
         }
     }
 }
